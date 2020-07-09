@@ -38,7 +38,7 @@ import { join, dirname } from 'path';
 
 const registeredPackagers = {
   npm: NPM,
-  yarn: Yarn
+  // yarn: Yarn
 };
 
 /**
