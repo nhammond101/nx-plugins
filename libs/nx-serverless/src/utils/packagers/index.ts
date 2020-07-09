@@ -47,11 +47,7 @@ const registeredPackagers = {
  * @param {string} packagerId - Well known packager id.
  */
 export function packager(packagerId) {
-  if (!_.has(registeredPackagers, packagerId)) {
-    const message = `Could not find packager '${packagerId}'`;
-    throw message;
-  }
-  return registeredPackagers[packagerId];
+  return registeredPackagers[packagerId] || undefined;
 }
 
 export function preparePackageJson(
