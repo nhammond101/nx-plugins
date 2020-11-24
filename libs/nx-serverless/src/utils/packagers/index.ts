@@ -38,7 +38,7 @@ import { join, dirname } from 'path';
 
 const registeredPackagers = {
   npm: NPM,
-  // yarn: Yarn
+  yarn: Yarn
 };
 
 /**
@@ -159,7 +159,7 @@ export function preparePackageJson(
     concatMap((prodModules: string[]) => {
       createPackageJson(prodModules, packageJsonPath, workspacePackageJsonPath);
       // run packager to  install node_modules
-      context.logger.info('run packager to  install node_modules');
+      context.logger.info('run packager to install node_modules');
       const packageInstallResult = packagerInstance.install(
         dirname(packageJsonPath),
         { ignoreScripts: true }
