@@ -14,10 +14,9 @@
 <div align="left">
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](https://www.serverless.com)
-[![@flowaccount/nx-serverless](https://img.shields.io/badge/%40flowaccount-nx--serverless-blue)](https://github.com/flowaccount/nx-plugins/tree/master/libs/nx-serverless)
-[![NPM Version](https://badge.fury.io/js/%40flowaccount%2Fnx-serverless.svg)](https://www.npmjs.com/@flowaccount/nx-serverless)
+[![@flowaccount/nx-serverless](https://img.shields.io/badge/%40nhammond101-nx--serverless-blue)](https://github.com/flowaccount/nx-plugins/tree/master/libs/nx-serverless)
+[![NPM Version](https://badge.fury.io/js/%40nhammond101%2Fnx-serverless.svg)](https://www.npmjs.com/@flowaccount/nx-serverless)
 [![Typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://www.typescriptlang.org/)
-[![CircleCI](https://circleci.com/gh/flowaccount/nx-plugins.svg?style=svg)](https://circleci.com/gh/flowaccount/nx-plugins)
 
 </div>
 
