@@ -26,7 +26,7 @@ export function runExternalSchematic(
     .toPromise();
 }
 
-export function callRule(rule: Rule, tree: Tree) {
+export function callRule(rule: Rule, tree: Tree):any {
   return testRunner.callRule(rule, tree).toPromise();
 }
 

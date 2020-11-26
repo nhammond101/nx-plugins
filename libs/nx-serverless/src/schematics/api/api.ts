@@ -103,7 +103,8 @@ function updateWorkspaceJson(options: NormalizedSchema): Rule {
     project.architect.lint = generateProjectLint(
       normalize(project.root),
       join(normalize(project.root), 'tsconfig.app.json'),
-      options.linter
+      options.linter,
+      null
     );
     workspaceJson.projects[options.name] = project;
     workspaceJson.defaultProject = workspaceJson.defaultProject || options.name;
