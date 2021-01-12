@@ -28,17 +28,17 @@ export class NPM {
       'ls',
       '-prod', // Only prod dependencies
       '-json',
-      `-depth=${depth || 1}`
+      `-depth=${depth || 1}`,
     ];
 
     const ignoredNpmErrors = [
       { npmError: 'extraneous', log: false },
       { npmError: 'missing', log: false },
-      { npmError: 'peer dep missing', log: true }
+      { npmError: 'peer dep missing', log: true },
     ];
 
     const result = spawnSync(command, args, {
-      cwd: cwd
+      cwd: cwd,
     });
 
     if (result.error) {
@@ -54,7 +54,7 @@ export class NPM {
             }
             return (
               !_.isEmpty(error) &&
-              !_.some(ignoredNpmErrors, ignoredError =>
+              !_.some(ignoredNpmErrors, (ignoredError) =>
                 _.startsWith(error, `npm ERR! ${ignoredError.npmError}`)
               )
             );
@@ -99,7 +99,7 @@ export class NPM {
     }
 
     if (lockfile.dependencies) {
-      _.forIn(lockfile.dependencies, lockedDependency => {
+      _.forIn(lockfile.dependencies, (lockedDependency) => {
         NPM.rebaseLockfile(pathToPackageRoot, lockedDependency);
       });
     }
@@ -123,7 +123,7 @@ export class NPM {
 
   static runScripts(cwd, scriptNames) {
     const command = /^win/.test(process.platform) ? 'npm.cmd' : 'npm';
-    return map(scriptNames, scriptName => {
+    return map(scriptNames, (scriptName) => {
       const args = ['run', scriptName];
 
       return spawn(command, args, { cwd });

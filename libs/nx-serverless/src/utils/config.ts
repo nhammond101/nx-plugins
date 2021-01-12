@@ -18,7 +18,7 @@ function getAliases(options: BuildBuilderOptions): { [key: string]: string } {
   return options.fileReplacements.reduce(
     (aliases, replacement) => ({
       ...aliases,
-      [replacement.replace]: replacement.with
+      [replacement.replace]: replacement.with,
     }),
     {}
   );
@@ -43,7 +43,7 @@ function getStatsConfig(options: BuildBuilderOptions): Stats.ToStringOptions {
     version: !!options.verbose,
     errorDetails: !!options.verbose,
     moduleTrace: !!options.verbose,
-    usedExports: !!options.verbose
+    usedExports: !!options.verbose,
   };
 }
 
@@ -62,7 +62,7 @@ export function getBaseWebpackPartial(
     // devtool: options.sourceMap ? 'source-map' : false,
     mode: options.optimization ? 'production' : 'development',
     output: {
-      path: options.outputPath
+      path: options.outputPath,
       // filename: OUT_FILENAME,
       // chunkFilename: OUT_CHUNK_FILENAME
     },
@@ -75,10 +75,10 @@ export function getBaseWebpackPartial(
             configFile: options.tsConfig,
             transpileOnly: true,
             // https://github.com/TypeStrong/ts-loader/pull/685
-            experimentalWatchApi: true
-          }
-        }
-      ]
+            experimentalWatchApi: true,
+          },
+        },
+      ],
     },
     resolve: {
       extensions,
@@ -87,26 +87,26 @@ export function getBaseWebpackPartial(
         new TsConfigPathsPlugin({
           configFile: options.tsConfig,
           extensions,
-          mainFields
-        })
+          mainFields,
+        }),
       ],
-      mainFields
+      mainFields,
     },
     performance: {
-      hints: false
+      hints: false,
     },
     plugins: [
       new ForkTsCheckerWebpackPlugin({
         tsconfig: options.tsConfig,
         workers: options.maxWorkers || ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE,
-        useTypescriptIncrementalApi: false
-      })
+        useTypescriptIncrementalApi: false,
+      }),
     ],
     watch: options.watch,
     watchOptions: {
-      poll: options.poll
+      poll: options.poll,
     },
-    stats: getStatsConfig(options)
+    stats: getStatsConfig(options),
   };
 
   const extraPlugins: webpack.Plugin[] = [];
@@ -119,10 +119,10 @@ export function getBaseWebpackPartial(
     extraPlugins.push(
       new LicenseWebpackPlugin({
         stats: {
-          errors: false
+          errors: false,
         },
         perChunkOutput: false,
-        outputFilename: '3rdpartylicenses.txt'
+        outputFilename: '3rdpartylicenses.txt',
       })
     );
   }
@@ -137,13 +137,13 @@ export function getBaseWebpackPartial(
         ignore: asset.ignore,
         from: {
           glob: asset.glob,
-          dot: true
-        }
+          dot: true,
+        },
       };
     });
 
     const copyWebpackPluginOptions = {
-      ignore: ['.gitkeep', '**/.DS_Store', '**/Thumbs.db']
+      ignore: ['.gitkeep', '**/.DS_Store', '**/Thumbs.db'],
     };
 
     const copyWebpackPluginInstance = new CopyWebpackPlugin(
@@ -156,7 +156,7 @@ export function getBaseWebpackPartial(
   if (options.showCircularDependencies) {
     extraPlugins.push(
       new CircularDependencyPlugin({
-        exclude: /[\\\/]node_modules[\\\/]/
+        exclude: /[\\\/]node_modules[\\\/]/,
       })
     );
   }

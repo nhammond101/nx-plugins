@@ -8,7 +8,7 @@ export async function wrapMiddlewareBuildOptions<T extends BuildBuilderOptions>(
   const functionNames: [
 
   ] = await ServerlessWrapper.serverless.service.getAllFunctions();
-  functionNames.forEach(name => {
+  functionNames.forEach((name) => {
     if (ServerlessWrapper.serverless.service.functions[name]) {
       const fn = ServerlessWrapper.serverless.service.getFunction(name);
       if (!fn.events) {
@@ -16,7 +16,7 @@ export async function wrapMiddlewareBuildOptions<T extends BuildBuilderOptions>(
       }
       if (options.logGroupName) {
         fn.events.push({
-          cloudwatchLog: { logGroup: options.logGroupName, filter: '' }
+          cloudwatchLog: { logGroup: options.logGroupName, filter: '' },
         });
       }
       ServerlessWrapper.serverless.service.functions[name] = fn;

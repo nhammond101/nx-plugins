@@ -34,11 +34,11 @@ describe('Serverless Compile Builder', () => {
       fileReplacements: [
         {
           replace: 'apps/environment/environment.ts',
-          with: 'apps/environment/environment.prod.ts'
-        }
+          with: 'apps/environment/environment.prod.ts',
+        },
       ],
       assets: [],
-      statsJson: false
+      statsJson: false,
     };
     compileTypeScriptFiles = jest.fn().mockImplementation(() => {
       return of({ success: true });
@@ -49,23 +49,23 @@ describe('Serverless Compile Builder', () => {
       workspace: {
         projects: {
           get: () => ({
-            sourceRoot: '/root/apps/serverlessapp/src'
-          })
-        }
-      }
+            sourceRoot: '/root/apps/serverlessapp/src',
+          }),
+        },
+      },
     });
     spyOn(ServerlessWrapper, 'init').and.returnValue(of(null));
     jest.spyOn(ServerlessWrapper, 'serverless', 'get').mockReturnValue({
       cli: {
         log: () => {
           return;
-        }
+        },
       },
       service: {
         getAllFunctions: () => {
           return [];
-        }
-      }
+        },
+      },
     });
     jest
       .spyOn(normalizeModule, 'getEntryForFunction')
@@ -78,7 +78,7 @@ describe('Serverless Compile Builder', () => {
   describe('run', () => {
     it('should call compileTypeScriptFiles', async () => {
       const run = await architect.scheduleBuilder(
-        '@flowaccount/nx-serverless:compile',
+        '@nhammond101/nx-serverless:compile',
         testOptions
       );
       await run.output.toPromise();
@@ -88,7 +88,7 @@ describe('Serverless Compile Builder', () => {
     // it('should call dependencyCheck function', async() => {
 
     //   const run = await architect.scheduleBuilder(
-    //     '@flowaccount/nx-serverless:compile',
+    //     '@nhammond101/nx-serverless:compile',
     //     testOptions
     //   );
     //   await run.output.toPromise();
@@ -98,7 +98,7 @@ describe('Serverless Compile Builder', () => {
     // });
     it('should emit the outfile along with success', async () => {
       const run = await architect.scheduleBuilder(
-        '@flowaccount/nx-serverless:compile',
+        '@nhammond101/nx-serverless:compile',
         testOptions
       );
       const output = await run.output.toPromise();

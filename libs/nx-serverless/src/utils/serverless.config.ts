@@ -60,7 +60,7 @@ export function consolidateExcludes(
       );
       context.logger.warn(`handlers ---> ${JSON.stringify(options.files)}`);
     }
-    Object.keys(options.files).forEach(handlerEntryName => {
+    Object.keys(options.files).forEach((handlerEntryName) => {
       if (
         filteredPaths.indexOf(
           relative(appRoot, options.files[handlerEntryName])

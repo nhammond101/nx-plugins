@@ -8,8 +8,7 @@
 
 <div align="left">
 
-[![License](https://img.shields.io/npm/l/@flowaccount/nx-serverless.svg?style=flat-square)]()
-[![CircleCI](https://circleci.com/gh/flowaccount/nx-plugins.svg?style=svg)](https://circleci.com/gh/flowaccount/nx-plugins)
+[![License](https://img.shields.io/npm/l/@nhammond101/nx-serverless.svg?style=flat-square)]()
 
 <hr>
 
@@ -17,9 +16,9 @@
 
 🔎 **Extensible Dev Tools for Monorepos.**
 
-# What is @flowaccount/nx-plugins
+# What is @nhammond101/nx-plugins
 
-🔎 **Extensible Continous Delivery/Depolyment Tools on top of Nx workspace for seamless deployments with frameworks like Serverless Framework and aws-cdk (Infrastructure as a code)**
+🔎 **Extensible Continuous Delivery/Deployment Tools on top of Nx workspace for seamless deployments with frameworks like Serverless Framework and aws-cdk (Infrastructure as a code)**
 
 ## Our Mission
 
@@ -33,8 +32,8 @@ As time goes by, we have been adding serveral open-source utilities and plugins 
 
 ### Plugins available
 
-[![@flowaccount/nx-serverless](https://img.shields.io/badge/%40flowaccount-nx--serverless-blue)](https://github.com/flowaccount/nx-plugins/tree/master/libs/nx-serverless)
-[![NPM Version](https://badge.fury.io/js/%40flowaccount%2Fnx-serverless.svg)](https://www.npmjs.com/@flowaccount/nx-serverless)
+[![@nhammond101/nx-serverless](https://img.shields.io/badge/%40nhammond101-nx--serverless-blue)](https://github.com/nhammond101/nx-plugins/tree/master/libs/nx-serverless)
+[![NPM Version](https://badge.fury.io/js/%40nhammond101%2Fnx-serverless.svg)](https://www.npmjs.com/@nhammond101/nx-serverless)
 
 [![@flowaccount/nx-aws-cdk](https://img.shields.io/badge/%40flowaccount-nx--aws--cdk-blue)](https://github.com/flowaccount/nx-plugins/tree/master/libs/nx-aws-cdk)
 
@@ -49,4 +48,4 @@ As time goes by, we have been adding serveral open-source utilities and plugins 
 
 ## Want to help?
 
-You are most welcome to help! Please file a bug or submit a PR, read the [guidelines for contributing](https://github.com/flowaccount/nx-plugins/blob/master/CONTRIBUTING.md) and start right on!
+You are most welcome to help! Please file a bug or submit a PR, read the [guidelines for contributing](https://github.com/nhammond101/nx-plugins/blob/master/CONTRIBUTING.md) and start right on!

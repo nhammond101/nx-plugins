@@ -3,7 +3,7 @@ import { createEmptyWorkspace } from '@nrwl/workspace/testing';
 import {
   readJsonInTree,
   serializeJson,
-  getWorkspacePath
+  getWorkspacePath,
 } from '@nrwl/workspace';
 import * as workspace from '@nrwl/workspace';
 import { runSchematic } from '../../utils/testing';
@@ -17,11 +17,11 @@ describe('angular universal app', () => {
     jest.spyOn(workspace, 'getProjectConfig').mockReturnValue({
       root: 'apps/my-app',
       sourceRoot: 'apps/my-app/src',
-      prefix: 'my-app'
+      prefix: 'my-app',
     });
     jest
       .spyOn(workspace, 'updateWorkspaceInTree')
-      .mockImplementation(callback => {
+      .mockImplementation((callback) => {
         return (host: Tree, context: SchematicContext): Tree => {
           const path = getWorkspacePath(host);
           host.overwrite(
@@ -34,9 +34,9 @@ describe('angular universal app', () => {
                       root: 'apps/my-app',
                       sourceRoot: 'apps/my-app/src',
                       prefix: 'my-app',
-                      architect: {}
-                    }
-                  }
+                      architect: {},
+                    },
+                  },
                 },
                 context
               )
@@ -60,40 +60,40 @@ describe('angular universal app', () => {
       expect(project.architect).toEqual(
         jasmine.objectContaining({
           compile: {
-            builder: '@flowaccount/nx-serverless:compile',
+            builder: '@nhammond101/nx-serverless:compile',
             configurations: {
               dev: {
                 budgets: [
                   {
                     maximumWarning: '2mb',
                     maximumError: '5mb',
-                    type: 'initial'
-                  }
+                    type: 'initial',
+                  },
                 ],
                 optimization: false,
-                sourceMap: false
+                sourceMap: false,
               },
               production: {
                 budgets: [
                   {
                     maximumWarning: '2mb',
                     maximumError: '5mb',
-                    type: 'initial'
-                  }
+                    type: 'initial',
+                  },
                 ],
                 extractCss: true,
                 extractLicenses: true,
                 fileReplacements: [
                   {
                     replace: 'apps/my-app/environment.ts',
-                    with: 'apps/my-app/environment.prod.ts'
-                  }
+                    with: 'apps/my-app/environment.prod.ts',
+                  },
                 ],
                 namedChunks: false,
                 optimization: true,
                 sourceMap: false,
-                vendorChunk: false
-              }
+                vendorChunk: false,
+              },
             },
             options: {
               outputPath: 'dist',
@@ -102,48 +102,48 @@ describe('angular universal app', () => {
               serverlessConfig: 'apps/my-app/serverless.yml',
               servicePath: 'apps/my-app',
               tsConfig: 'apps/my-app/tsconfig.serverless.json',
-              skipClean: true
-            }
+              skipClean: true,
+            },
           },
           deploy: {
-            builder: '@flowaccount/nx-serverless:deploy',
+            builder: '@nhammond101/nx-serverless:deploy',
             options: {
               waitUntilTargets: [
                 'my-app:build:production',
-                'my-app:server:production'
+                'my-app:server:production',
               ],
               buildTarget: 'my-app:compile:production',
               config: 'apps/my-app/serverless.yml',
               location: 'dist/apps/my-app',
-              package: 'dist/apps/my-app'
-            }
+              package: 'dist/apps/my-app',
+            },
           },
           destroy: {
-            builder: '@flowaccount/nx-serverless:destroy',
+            builder: '@nhammond101/nx-serverless:destroy',
             options: {
               buildTarget: 'my-app:compile:production',
               config: 'apps/my-app/serverless.yml',
               location: 'dist/apps/my-app',
-              package: 'dist/apps/my-app'
-            }
+              package: 'dist/apps/my-app',
+            },
           },
           offline: {
-            builder: '@flowaccount/nx-serverless:offline',
+            builder: '@nhammond101/nx-serverless:offline',
             configurations: {
               dev: {
-                buildTarget: 'my-app:compile:dev'
+                buildTarget: 'my-app:compile:dev',
               },
               production: {
-                buildTarget: 'my-app:compile:production'
-              }
+                buildTarget: 'my-app:compile:production',
+              },
             },
             options: {
               waitUntilTargets: ['my-app:build', 'my-app:server'],
               buildTarget: 'my-app:compile',
               config: 'apps/my-app/serverless.yml',
-              location: 'dist/apps/my-app'
-            }
-          }
+              location: 'dist/apps/my-app',
+            },
+          },
         })
       );
     });
@@ -169,7 +169,7 @@ describe('angular universal app', () => {
       const servertsContent = tree.readContent('apps/my-app/server.ts');
       expect(
         servertsContent.indexOf(
-          "environment.production ? join(process.cwd(), './browser') : join(process.cwd(), 'dist/my-app/browser')"
+          'environment.production ? join(process.cwd(), \'./browser\') : join(process.cwd(), \'dist/my-app/browser\')'
         ) > -1
       );
     });

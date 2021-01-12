@@ -1,7 +1,7 @@
 import {
   BuilderContext,
   createBuilder,
-  BuilderOutput
+  BuilderOutput,
 } from '@angular-devkit/architect';
 import { JsonObject } from '@angular-devkit/core';
 import { of, Observable } from 'rxjs';
@@ -30,9 +30,9 @@ export function serverlessExecutionHandler(
         ServerlessWrapper.serverless.config.servicePath = options.location;
         ServerlessWrapper.serverless.processedInput = {
           commands: ['remove'],
-          options: getExecArgv(options)
+          options: getExecArgv(options),
         };
-        return new Observable<BuilderOutput>(option => {
+        return new Observable<BuilderOutput>((option) => {
           ServerlessWrapper.serverless
             .run()
             .then(() => {
@@ -41,12 +41,12 @@ export function serverlessExecutionHandler(
               option.next({ success: true });
               option.complete();
             })
-            .catch(ex => {
+            .catch((ex) => {
               option.next({ success: false, error: ex.toString() });
               option.complete();
             });
         }).pipe(
-          concatMap(result => {
+          concatMap((result) => {
             return of(result);
           })
         );
@@ -55,7 +55,7 @@ export function serverlessExecutionHandler(
         context.logger.info(`${event.outfile} was not restarted.`);
         return of({
           success: false,
-          error: `${event.outfile} was not restarted.`
+          error: `${event.outfile} was not restarted.`,
         });
       }
     })

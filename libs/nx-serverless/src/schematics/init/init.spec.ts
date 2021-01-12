@@ -15,10 +15,10 @@ describe('init', () => {
     const result = await runSchematic('init', { expressProxy: false }, tree);
     const packageJson = readJsonInTree(result, 'package.json');
     expect(
-      packageJson.dependencies['@flowaccount/nx-serverless']
+      packageJson.dependencies['@nhammond101/nx-serverless']
     ).toBeUndefined();
     expect(
-      packageJson.devDependencies['@flowaccount/nx-serverless']
+      packageJson.devDependencies['@nhammond101/nx-serverless']
     ).toBeDefined();
     expect(packageJson.devDependencies['serverless']).toBeDefined();
     expect(packageJson.devDependencies['serverless-offline']).toBeDefined();
@@ -29,10 +29,10 @@ describe('init', () => {
     const result = await runSchematic('init', { expressProxy: true }, tree);
     const packageJson = readJsonInTree(result, 'package.json');
     expect(
-      packageJson.dependencies['@flowaccount/nx-serverless']
+      packageJson.dependencies['@nhammond101/nx-serverless']
     ).toBeUndefined();
     expect(
-      packageJson.devDependencies['@flowaccount/nx-serverless']
+      packageJson.devDependencies['@nhammond101/nx-serverless']
     ).toBeDefined();
     expect(packageJson.devDependencies['serverless']).toBeDefined();
     expect(packageJson.devDependencies['serverless-offline']).toBeDefined();
@@ -50,7 +50,7 @@ describe('init', () => {
   //     it('should be set if none was set before', async () => {
   //       const result = await runSchematic('init', {}, tree);
   //       const workspaceJson = readJsonInTree(result, 'workspace.json');
-  //       expect(workspaceJson.cli.defaultCollection).toEqual('@flowaccount/nx-serverless');
+  //       expect(workspaceJson.cli.defaultCollection).toEqual('@nhammond101/nx-serverless');
   //     });
 
   //     it('should be set if @nrwl/workspace was set before', async () => {
@@ -66,7 +66,7 @@ describe('init', () => {
   //       );
   //       const result = await runSchematic('init', {}, tree);
   //       const workspaceJson = readJsonInTree(result, 'workspace.json');
-  //       expect(workspaceJson.cli.defaultCollection).toEqual('@flowaccount/nx-serverless');
+  //       expect(workspaceJson.cli.defaultCollection).toEqual('@nhammond101/nx-serverless');
   //     });
 
   //     it('should not be set if something else was set before', async () => {

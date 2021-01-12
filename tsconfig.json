@@ -16,7 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@flowaccount/flowaccount/nx-serverless": [
+      "@nhammond101/nhammond101/nx-serverless": [
         "libs/nx-serverless/src/index.ts"
       ],
       "@flowaccount/aws-cdk": ["libs/aws-cdk/src/index.ts"],

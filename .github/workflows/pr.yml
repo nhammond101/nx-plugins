@@ -1,0 +1,36 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  build:
+    name: Test and Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 12, 14 ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+        with:
+          ref: main
+          fetch-depth: 5
+      - uses: actions/setup-node@v2
+        with:
+          # The Node.js version to configure
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run nx lint nx-serverless
+        continue-on-error: true
+      - name: Test
+        run: npm run nx test nx-serverless
+      - name: Build
+        run: npm run nx build nx-serverless

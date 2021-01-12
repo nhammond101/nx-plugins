@@ -31,14 +31,14 @@ describe('Serverless Config Manipulations', () => {
             outDir: '../../dist/out-tsc',
             declaration: true,
             rootDir: './src',
-            types: ['node']
+            types: ['node'],
           },
           exclude: ['**/*.spec.ts'],
-          include: ['**/*.ts']
+          include: ['**/*.ts'],
         };
       } else {
         return {
-          name: 'serverlessapp'
+          name: 'serverlessapp',
         };
       }
     });
@@ -46,10 +46,10 @@ describe('Serverless Config Manipulations', () => {
       workspace: {
         projects: {
           get: () => ({
-            sourceRoot: '/root/apps/serverlessapp/src'
-          })
-        }
-      }
+            sourceRoot: '/root/apps/serverlessapp/src',
+          }),
+        },
+      },
     });
     fsUtility.writeJsonFile.mockImplementation(() => {});
     jest.spyOn(ServerlessWrapper, 'init').mockReturnValue(of(null));
@@ -57,22 +57,22 @@ describe('Serverless Config Manipulations', () => {
       cli: {
         log: () => {
           return;
-        }
+        },
       },
       service: {
         getAllFunctions: () => {
           return [];
         },
         package: {
-          exclude: []
+          exclude: [],
         },
-        plugins: {}
+        plugins: {},
       },
       pluginManager: {
         parsePluginsObject: () => {
           return { localPath: '/.serverless_plugins/**' };
-        }
-      }
+        },
+      },
     });
     context = await getMockContext();
     context.target.project = 'serverlessapp';
@@ -87,7 +87,7 @@ describe('Serverless Config Manipulations', () => {
       serverlessConfig: 'apps/serverlessapp/serverless.yml',
       servicePath: 'apps/serverlessapp',
       processEnvironmentFile: 'env.json',
-      externalDependencies: 'all'
+      externalDependencies: 'all',
       // files: { 'src/handler': '/src/handler.ts' }
     };
   });
@@ -97,7 +97,7 @@ describe('Serverless Config Manipulations', () => {
     });
     it('should succeed without any excludes config', () => {
       testOptions.files = {
-        'src/handler': '/root/apps/serverlessapp/src/handler.ts'
+        'src/handler': '/root/apps/serverlessapp/src/handler.ts',
       };
       testOptions.sourceRoot = '/root/apps/serverlessapp/src' as Path;
       const result = consolidateExcludes(testOptions, context);

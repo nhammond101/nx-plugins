@@ -37,14 +37,14 @@ describe('Typescript Compiler', () => {
             outDir: '../../dist/out-tsc',
             declaration: true,
             rootDir: './src',
-            types: ['node']
+            types: ['node'],
           },
           exclude: ['**/*.spec.ts'],
-          include: ['**/*.ts']
+          include: ['**/*.ts'],
         };
       } else {
         return {
-          name: 'nodelib'
+          name: 'nodelib',
         };
       }
     });
@@ -61,7 +61,7 @@ describe('Typescript Compiler', () => {
       serverlessConfig: 'apps/serverlessapp/serverless.yml',
       servicePath: 'apps/serverlessapp',
       processEnvironmentFile: 'env.json',
-      skipClean: false
+      skipClean: false,
     };
   });
 
@@ -70,7 +70,7 @@ describe('Typescript Compiler', () => {
       // mock createProjectGraph without deps
     });
 
-    it('should call tsc to compile', done => {
+    it('should call tsc to compile', (done) => {
       compileTypeScriptFiles(testOptions, context).subscribe({
         complete: () => {
           expect(
@@ -81,27 +81,27 @@ describe('Typescript Compiler', () => {
             { stdio: [0, 1, 2, 'ipc'] }
           );
           done();
-        }
+        },
       });
       fakeEventEmitter.emit('exit', 0);
     });
-    it('should have the output success true in the BuilderOutput', done => {
+    it('should have the output success true in the BuilderOutput', (done) => {
       compileTypeScriptFiles(testOptions, context).subscribe({
-        next: value => {
+        next: (value) => {
           expect(value.success).toEqual(true);
         },
         complete: () => {
           done();
-        }
+        },
       });
       fakeEventEmitter.emit('exit', 0);
     });
-    it('should call removesync if not skipClean', done => {
+    it('should call removesync if not skipClean', (done) => {
       compileTypeScriptFiles(testOptions, context).subscribe({
         complete: () => {
           expect(removeSync).toHaveBeenCalled();
           done();
-        }
+        },
       });
       fakeEventEmitter.emit('exit', 0);
     });

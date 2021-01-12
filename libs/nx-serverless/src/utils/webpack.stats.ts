@@ -68,7 +68,7 @@ export class WebpackDependencyResolver implements DependencyResolver {
         if (this.isExternalModule(module)) {
           externals.add({
             origin: module.issuer,
-            external: this.getExternalModuleName(module)
+            external: this.getExternalModuleName(module),
           });
         }
       }

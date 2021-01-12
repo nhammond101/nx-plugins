@@ -10,7 +10,7 @@ export interface BaseSchema {
 
 export function getBuildConfig(options: BaseSchema) {
   return {
-    builder: '@flowaccount/nx-serverless:build',
+    builder: '@nhammond101/nx-serverless:build',
     options: {
       outputPath: join(normalize('dist'), options.appProjectRoot),
       package: options.appProjectRoot,
@@ -18,7 +18,7 @@ export function getBuildConfig(options: BaseSchema) {
       servicePath: options.appProjectRoot,
       tsConfig: join(options.appProjectRoot, 'tsconfig.app.json'),
       provider: options.provider,
-      processEnvironmentFile: 'env.json'
+      processEnvironmentFile: 'env.json',
     },
     configurations: {
       dev: {
@@ -28,9 +28,9 @@ export function getBuildConfig(options: BaseSchema) {
           {
             type: 'initial',
             maximumWarning: '2mb',
-            maximumError: '5mb'
-          }
-        ]
+            maximumError: '5mb',
+          },
+        ],
       },
       production: {
         optimization: true,
@@ -43,16 +43,16 @@ export function getBuildConfig(options: BaseSchema) {
           {
             type: 'initial',
             maximumWarning: '2mb',
-            maximumError: '5mb'
-          }
+            maximumError: '5mb',
+          },
         ],
         fileReplacements: [
           {
             replace: join(options.appProjectRoot, 'environment.ts'),
-            with: join(options.appProjectRoot, 'environment.prod.ts')
-          }
-        ]
-      }
-    }
+            with: join(options.appProjectRoot, 'environment.prod.ts'),
+          },
+        ],
+      },
+    },
   };
 }

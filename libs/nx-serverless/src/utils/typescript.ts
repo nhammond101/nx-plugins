@@ -28,7 +28,7 @@ function cleanupTmpTsConfigFile(tsConfigPath) {
 }
 
 function killProcess(context: BuilderContext): void {
-  return treeKill(tscProcess.pid, 'SIGTERM', error => {
+  return treeKill(tscProcess.pid, 'SIGTERM', (error) => {
     tscProcess = null;
     if (error) {
       if (Array.isArray(error) && error[0] && error[2]) {
@@ -109,7 +109,7 @@ export function compileTypeScriptFiles(
           `Compiling TypeScript files for tsconfig ${tsConfigPath} under ${context.target.project}...`
         );
         tscProcess = fork(tscPath, args, { stdio: [0, 1, 2, 'ipc'] });
-        tscProcess.on('exit', code => {
+        tscProcess.on('exit', (code) => {
           if (code === 0) {
             context.logger.info(
               `Done compiling TypeScript files for tsconfig ${tsConfigPath} under ${context.target.project}`

@@ -40,3 +40,5 @@ Thumbs.db
 .npmrc
 
 node_modules/
+
+*.env

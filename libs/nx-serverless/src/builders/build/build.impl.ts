@@ -10,7 +10,7 @@ import { getNodeWebpackConfig } from '../../utils/node.config';
 import {
   normalizeBuildOptions,
   assignEntriesToFunctionsFromServerless,
-  getSourceRoot
+  getSourceRoot,
 } from '../../utils/normalize';
 import { Stats } from 'webpack';
 import { ServerlessWrapper } from '../../utils/serverless';
@@ -18,7 +18,7 @@ import { ServerlessWrapper } from '../../utils/serverless';
 import { resolve } from 'path';
 import { WebpackDependencyResolver } from '../../utils/webpack.stats';
 import { consolidateExcludes } from '../../utils/serverless.config';
-export interface BuildServerlessBuilderOptions extends BuildBuilderOptions {}
+export type BuildServerlessBuilderOptions = BuildBuilderOptions
 export type ServerlessBuildEvent = BuildResult &
   ServerlessEventResult & {
     outfile: string;
@@ -29,10 +29,10 @@ function run(
   context: BuilderContext
 ): Observable<ServerlessBuildEvent> {
   return from(getSourceRoot(context)).pipe(
-    map(sourceRoot =>
+    map((sourceRoot) =>
       normalizeBuildOptions(options, context.workspaceRoot, sourceRoot)
     ),
-    switchMap(options =>
+    switchMap((options) =>
       combineLatest(of(options), from(ServerlessWrapper.init(options, context)))
     ),
     map(([options]) => {
@@ -41,7 +41,7 @@ function run(
         context.workspaceRoot
       );
     }),
-    map(options => {
+    map((options) => {
       options.tsConfig = consolidateExcludes(options, context);
       options.entry = options.files;
       console.log(options.tsConfig);
@@ -49,17 +49,17 @@ function run(
       if (options.webpackConfig) {
         config = require(options.webpackConfig)(config, {
           options,
-          configuration: context.target.configuration
+          configuration: context.target.configuration,
         });
       }
       return config;
     }),
-    concatMap(config => {
+    concatMap((config) => {
       ServerlessWrapper.serverless.cli.log('start compiling webpack');
       return runWebpack(config, context, {
-        logging: stats => {
+        logging: (stats) => {
           context.logger.info(stats.toString(config.stats));
-        }
+        },
       });
     }),
     map((buildEvent: BuildResult) => {

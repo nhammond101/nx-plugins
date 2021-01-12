@@ -30,7 +30,7 @@ describe('Serverless Destroy Builder', () => {
       stage: 'dev',
       updateConfig: false,
       args: [],
-      list: false
+      list: false,
     };
 
     jest
@@ -44,20 +44,20 @@ describe('Serverless Destroy Builder', () => {
       cli: {
         log: () => {
           return;
-        }
+        },
       },
       processedInput: {},
       config: {
-        servicePath: '/root/apps/serverlessapp/src'
+        servicePath: '/root/apps/serverlessapp/src',
       },
       service: {
         getAllFunctions: () => {
           return [];
-        }
+        },
       },
       run: () => {
         return Promise.resolve({ success: true });
-      }
+      },
     });
   });
   describe('run', () => {

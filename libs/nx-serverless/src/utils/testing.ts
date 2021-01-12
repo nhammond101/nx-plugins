@@ -7,7 +7,7 @@ import { Architect } from '@angular-devkit/architect';
 import { MockBuilderContext } from '@nrwl/workspace/testing';
 
 const testRunner = new SchematicTestRunner(
-  '@flowaccount/nx-serverless',
+  '@nhammond101/nx-serverless',
   join(__dirname, '../../collection.json')
 );
 
@@ -26,7 +26,7 @@ export function runExternalSchematic(
     .toPromise();
 }
 
-export function callRule(rule: Rule, tree: Tree):any {
+export function callRule(rule: Rule, tree: Tree): any {
   return testRunner.callRule(rule, tree).toPromise();
 }
 

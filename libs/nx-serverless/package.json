@@ -1,6 +1,6 @@
 {
   "name": "@nhammond101/nx-serverless",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "main": "src/index.js",
   "description": "Serverless schematics for nx workspace",
   "keywords": [
@@ -45,6 +45,6 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "https://github.com/flowaccount/nx-plugins/tree/master/libs/nx-serverless"
+    "url": "https://github.com/nhammond101/nx-plugins/tree/master/libs/nx-serverless"
   }
 }

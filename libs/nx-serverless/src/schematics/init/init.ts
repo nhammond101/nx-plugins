@@ -4,14 +4,14 @@ import {
   noop,
   Tree,
   SchematicContext,
-  externalSchematic
+  externalSchematic,
 } from '@angular-devkit/schematics';
 import {
   addDepsToPackageJson,
   updateJsonInTree,
   addPackageWithInit,
   formatFiles,
-  readJsonInTree
+  readJsonInTree,
 } from '@nrwl/workspace';
 import { Schema } from './schema';
 import {
@@ -21,16 +21,16 @@ import {
   awsTypeLambdaVersion,
   awsServerlessExpressVersion,
   serverlessApigwBinaryVersion,
-  expressVersion
+  expressVersion,
 } from '../../utils/versions';
 
 function addDependencies(expressProxy: boolean): Rule {
   return (host: Tree, context: SchematicContext): Rule => {
     const dependencies = {};
     const devDependencies = {
-      '@flowaccount/nx-serverless': nxVersion,
+      '@nhammond101/nx-serverless': nxVersion,
       serverless: serverlessVersion,
-      'serverless-offline': serverlessOfflineVersion
+      'serverless-offline': serverlessOfflineVersion,
     };
     if (expressProxy) {
       dependencies['aws-serverless-express'] = awsServerlessExpressVersion;
@@ -43,13 +43,13 @@ function addDependencies(expressProxy: boolean): Rule {
       devDependencies['@types/aws-lambda'] = awsTypeLambdaVersion;
     }
     const packageJson = readJsonInTree(host, 'package.json');
-    Object.keys(dependencies).forEach(key => {
+    Object.keys(dependencies).forEach((key) => {
       if (packageJson.dependencies[key]) {
         delete dependencies[key];
       }
     });
 
-    Object.keys(devDependencies).forEach(key => {
+    Object.keys(devDependencies).forEach((key) => {
       if (packageJson.devDependencies[key]) {
         delete devDependencies[key];
       }
@@ -67,23 +67,23 @@ function addDependencies(expressProxy: boolean): Rule {
 }
 
 function updateDependencies(): Rule {
-  return updateJsonInTree('package.json', json => {
-    if (json.dependencies['@flowaccount/nx-serverless']) {
-      json.devDependencies['@flowaccount/nx-serverless'] =
-        json.dependencies['@flowaccount/nx-serverless'];
-      delete json.dependencies['@flowaccount/nx-serverless'];
-    } else if (!json.devDependencies['@flowaccount/nx-serverless']) {
-      json.devDependencies['@flowaccount/nx-serverless'] = nxVersion;
+  return updateJsonInTree('package.json', (json) => {
+    if (json.dependencies['@nhammond101/nx-serverless']) {
+      json.devDependencies['@nhammond101/nx-serverless'] =
+        json.dependencies['@nhammond101/nx-serverless'];
+      delete json.dependencies['@nhammond101/nx-serverless'];
+    } else if (!json.devDependencies['@nhammond101/nx-serverless']) {
+      json.devDependencies['@nhammond101/nx-serverless'] = nxVersion;
     }
     return json;
   });
 }
 
-export default function(schema: Schema) {
+export default function (schema: Schema) {
   return chain([
     addPackageWithInit('@nrwl/jest'),
     addDependencies(schema.expressProxy),
     updateDependencies(),
-    formatFiles(schema)
+    formatFiles(schema),
   ]);
 }

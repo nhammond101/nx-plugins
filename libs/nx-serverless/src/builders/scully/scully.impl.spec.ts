@@ -26,7 +26,7 @@ describe('Scully Builder', () => {
       showGuessError: true,
       showBrowser: false,
       removeStaticDist: true,
-      scanRoutes: true
+      scanRoutes: true,
     };
     startBuild = jest.fn().mockReturnValue(of({ success: true }));
     (targetSchedulers as any).startBuild = startBuild;
@@ -37,7 +37,7 @@ describe('Scully Builder', () => {
         info: null,
         progress: null,
         result: Promise.resolve({ success: true }),
-        output: of({ success: true })
+        output: of({ success: true }),
       })
     );
     // getExecArgv = jest.spyOn(scullyRunner, 'getExecArgv').mockReturnValue([]);
@@ -60,12 +60,12 @@ describe('Scully Builder', () => {
           commands: [
             {
               command:
-                'scully --configFile=scully.config.js --showGuessError=true --showBrowser=false --removeStaticDist=true --scanRoutes=true'
-            }
+                'scully --configFile=scully.config.js --showGuessError=true --showBrowser=false --removeStaticDist=true --scanRoutes=true',
+            },
           ],
           cwd: testOptions.root,
           color: true,
-          parallel: false
+          parallel: false,
         }
       );
     });

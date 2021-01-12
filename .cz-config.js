@@ -6,36 +6,45 @@ module.exports = {
     {
       value: 'cleanup',
       name:
-        'cleanup:  A code change that neither fixes a bug nor adds a feature'
+        'cleanup:  A code change that neither fixes a bug nor adds a feature',
     },
     {
       value: 'chore',
-      name: "chore:    Other changes that don't modify src or test files"
-    }
+      name: "chore:    Other changes that don't modify src or test files",
+    },
   ],
   scopes: [
     { name: 'nx-serverless', description: 'anything nx-serverless specific' },
     {
       name: 'core',
-      description: 'anything infrastructure as a code core specific'
+      description: 'anything infrastructure as a code core specific',
     },
     { name: 'docs', description: 'anything related to docs infrastructure' },
     { name: 'nx-aws-cdk', description: 'anything aws-cdk specific' },
     { name: 'angular', description: 'anything angular specific' },
-    { name: 'scully-plugin-angular-delay', description: 'anything scully-plugin-angular-delay specific' },
-    { name: 'scully-plugin-google-analytics', description: 'anything scully-plugin-google-analytics specific' },
-    { name: 'scully-plugin-lazy-load-picture-tag', description: 'anything scully-plugin-lazy-load-picture-tag specific' },
+    {
+      name: 'scully-plugin-angular-delay',
+      description: 'anything scully-plugin-angular-delay specific',
+    },
+    {
+      name: 'scully-plugin-google-analytics',
+      description: 'anything scully-plugin-google-analytics specific',
+    },
+    {
+      name: 'scully-plugin-lazy-load-picture-tag',
+      description: 'anything scully-plugin-lazy-load-picture-tag specific',
+    },
     { name: 'node', description: 'anything Node specific' },
     { name: 'linter', description: 'anything Linter specific' },
     {
       name: 'testing',
-      description: 'anything testing specific (e.g., jest or cypress)'
+      description: 'anything testing specific (e.g., jest or cypress)',
     },
     {
       name: 'repo',
-      description: 'anything related to managing the repo itself'
+      description: 'anything related to managing the repo itself',
     },
-    { name: 'misc', description: 'misc stuff' }
+    { name: 'misc', description: 'misc stuff' },
   ],
 
   allowTicketNumber: true,
@@ -55,14 +64,14 @@ module.exports = {
     breaking: 'List any BREAKING CHANGES (optional):\n',
     footer:
       'List any ISSUES CLOSED by this change (optional). E.g.: #31, #34:\n',
-    confirmCommit: 'Are you sure you want to proceed with the commit above?'
+    confirmCommit: 'Are you sure you want to proceed with the commit above?',
   },
   allowCustomScopes: false,
   allowBreakingChanges: ['feat', 'fix'],
   // skip any questions you want
   skipQuestions: ['ticketNumber'],
   // limit subject length
-  subjectLimit: 100
+  subjectLimit: 100,
   // breaklineChar: '|', // It is supported for fields body and footer.
   // footerPrefix : 'ISSUES CLOSED:'
   // askForBreakingChangeFirst : true, // default is false

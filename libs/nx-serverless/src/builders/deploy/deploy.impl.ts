@@ -3,7 +3,7 @@ import {
   createBuilder,
   BuilderOutput,
   targetFromTargetString,
-  scheduleTargetAndForget
+  scheduleTargetAndForget,
 } from '@angular-devkit/architect';
 import { JsonObject } from '@angular-devkit/core';
 import { Observable, of, from } from 'rxjs';
@@ -21,7 +21,7 @@ gracefulFs.gracefulify(fs);
 /* Fix for EMFILE: too many open files on serverless deploy */
 export const enum InspectType {
   Inspect = 'inspect',
-  InspectBrk = 'inspect-brk'
+  InspectBrk = 'inspect-brk',
 }
 
 // review: Have to spin off options and clarify schema.json for deploy,build,serve
@@ -53,7 +53,7 @@ export function serverlessExecutionHandler(
 ): Observable<BuilderOutput> {
   // build into output path before running serverless offline.
   return runWaitUntilTargets(options.waitUntilTargets, context).pipe(
-    concatMap(v => {
+    concatMap((v) => {
       if (!v.success) {
         context.logger.error(
           'One of the tasks specified in waitUntilTargets failed'
@@ -76,11 +76,11 @@ export function serverlessExecutionHandler(
         context.logger.info(`${event.outfile} was not restarted.`);
         return of({
           success: false,
-          error: `${event.outfile} was not restarted.`
+          error: `${event.outfile} was not restarted.`,
         });
       }
     }),
-    concatMap(result => {
+    concatMap((result) => {
       if (result.success) {
         // change servicePath to distribution location
         // review: Change options from location to outputpath?\
@@ -89,9 +89,9 @@ export function serverlessExecutionHandler(
         ServerlessWrapper.serverless.config.servicePath = options.location;
         ServerlessWrapper.serverless.processedInput = {
           commands: ['deploy'],
-          options: args
+          options: args,
         };
-        return new Observable<BuilderOutput>(option => {
+        return new Observable<BuilderOutput>((option) => {
           ServerlessWrapper.serverless
             .run()
             .then(() => {
@@ -100,12 +100,12 @@ export function serverlessExecutionHandler(
               option.next({ success: true });
               option.complete();
             })
-            .catch(ex => {
+            .catch((ex) => {
               option.next({ success: false, error: ex.toString() });
               option.complete();
             });
         }).pipe(
-          concatMap(result => {
+          concatMap((result) => {
             return of(result);
           })
         );

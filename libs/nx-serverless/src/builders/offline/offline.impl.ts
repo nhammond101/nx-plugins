@@ -3,7 +3,7 @@ import {
   createBuilder,
   BuilderOutput,
   targetFromTargetString,
-  scheduleTargetAndForget
+  scheduleTargetAndForget,
 } from '@angular-devkit/architect';
 import { JsonObject } from '@angular-devkit/core';
 import { Observable, bindCallback, of, zip, from } from 'rxjs';
@@ -20,7 +20,7 @@ try {
 
 export const enum InspectType {
   Inspect = 'inspect',
-  InspectBrk = 'inspect-brk'
+  InspectBrk = 'inspect-brk',
 }
 // https://www.npmjs.com/package/serverless-offline
 export interface ServerlessExecuteBuilderOptions extends JsonObject {
@@ -86,7 +86,7 @@ function killProcess(context: BuilderContext): Observable<void | Error> {
 
   const observableTreeKill = bindCallback<number, string, Error>(treeKill);
   return observableTreeKill(subProcess.pid, 'SIGTERM').pipe(
-    tap(err => {
+    tap((err) => {
       subProcess = null;
       if (err) {
         if (Array.isArray(err) && err[0] && err[2]) {
@@ -108,12 +108,12 @@ function startBuild(
   return from(
     Promise.all([
       context.getTargetOptions(target),
-      context.getBuilderNameForTarget(target)
+      context.getBuilderNameForTarget(target),
     ]).then(([options, builderName]) =>
       context.validateOptions(options, builderName)
     )
   ).pipe(
-    tap(options => {
+    tap((options) => {
       if (options.optimization) {
         context.logger.warn(stripIndents`
               ************************************************
@@ -128,7 +128,7 @@ function startBuild(
     concatMap(
       () =>
         (scheduleTargetAndForget(context, target, {
-          watch: true
+          watch: true,
         }) as unknown) as Observable<ServerlessBuildEvent>
     )
   );
@@ -164,7 +164,7 @@ export function serverlessExecutionHandler(
   context: BuilderContext
 ): Observable<BuilderOutput> {
   return runWaitUntilTargets(options.waitUntilTargets, context).pipe(
-    concatMap(v => {
+    concatMap((v) => {
       if (!v.success) {
         context.logger.error(
           'One of the tasks specified in waitUntilTargets failed'

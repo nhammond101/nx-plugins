@@ -6,7 +6,7 @@
     "init": {
       "factory": "./src/schematics/init/init",
       "schema": "./src/schematics/init/schema.json",
-      "description": "Initialize the @flowaccount/nx-serverless plugin",
+      "description": "Initialize the @nhammond101/nx-serverless plugin",
       "aliases": ["init-serverless"],
       "hidden": true
     },

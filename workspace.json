@@ -66,7 +66,7 @@
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "nx-serverless:build",
-            "npmPackageName": "@flowaccount/nx-serverless",
+            "npmPackageName": "@nhammond101/nx-serverless",
             "pluginOutputPath": "dist/libs/nx-serverless",
             "jestConfig": "apps/nx-serverless-e2e/jest.config.js",
             "tsSpecConfig": "apps/nx-serverless-e2e/tsconfig.spec.json"

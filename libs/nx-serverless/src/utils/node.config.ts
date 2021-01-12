@@ -8,30 +8,30 @@ import { BuildBuilderOptions } from './types';
 function getNodePartial(options: BuildBuilderOptions) {
   const webpackConfig: Configuration = {
     output: {
-      libraryTarget: 'commonjs'
+      libraryTarget: 'commonjs',
     },
     target: 'node',
-    node: false
+    node: false,
   };
 
   if (options.optimization) {
     webpackConfig.optimization = {
       minimize: options.optimization,
-      concatenateModules: false
+      concatenateModules: false,
     };
   }
   if (options.externalDependencies === 'all') {
     webpackConfig.externals = [nodeExternals()];
   } else if (Array.isArray(options.externalDependencies)) {
     webpackConfig.externals = [
-      function(context, request, callback: Function) {
+      function (context, request, callback: Function) {
         if (options.externalDependencies.includes(request)) {
           // not bundled
           return callback(null, 'commonjs ' + request);
         }
         // bundled
         callback();
-      }
+      },
     ];
   }
 

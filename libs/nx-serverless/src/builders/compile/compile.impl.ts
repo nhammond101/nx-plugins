@@ -1,7 +1,7 @@
 import {
   BuilderContext,
   createBuilder,
-  BuilderOutput
+  BuilderOutput,
 } from '@angular-devkit/architect';
 import { JsonObject } from '@angular-devkit/core';
 import { ServerlessCompileOptions } from '../../utils/types';
@@ -11,7 +11,7 @@ import { switchMap, map, concatMap } from 'rxjs/operators';
 import {
   normalizeBuildOptions,
   assignEntriesToFunctionsFromServerless,
-  getSourceRoot
+  getSourceRoot,
 } from '../../utils/normalize';
 import { ServerlessWrapper } from '../../utils/serverless';
 import { resolve, join } from 'path';
@@ -27,14 +27,14 @@ export function run(
   context: BuilderContext
 ): Observable<ServerlesCompiledEvent> {
   return from(getSourceRoot(context)).pipe(
-    map(sourceRoot =>
+    map((sourceRoot) =>
       normalizeBuildOptions(
         options,
         context.workspaceRoot,
         join(context.workspaceRoot, sourceRoot)
       )
     ),
-    switchMap(options =>
+    switchMap((options) =>
       combineLatest(of(options), from(ServerlessWrapper.init(options, context)))
     ),
     map(([options]) => {
@@ -43,7 +43,7 @@ export function run(
         context.workspaceRoot
       );
     }),
-    concatMap(options => {
+    concatMap((options) => {
       context.logger.info('start compiling typescript');
       return compileTypeScriptFiles(
         options,
@@ -56,7 +56,7 @@ export function run(
         ...value,
         outfile: resolve(context.workspaceRoot, options.outputPath),
         resolverName: 'DependencyCheckResolver',
-        tsconfig: resolve(context.workspaceRoot, options.tsConfig)
+        tsconfig: resolve(context.workspaceRoot, options.tsConfig),
       };
     })
   );

@@ -4,7 +4,7 @@ import {
   BuilderContext,
   createBuilder,
   BuilderOutput,
-  BuilderRun
+  BuilderRun,
 } from '@angular-devkit/architect';
 import { JsonObject } from '@angular-devkit/core';
 import { Observable, of, from } from 'rxjs';
@@ -35,13 +35,13 @@ export function scullyCmdRunner(
   //
   if (options.skipBuild) {
     return runScully(options, context).pipe(
-      concatMap(result => {
+      concatMap((result) => {
         return result.output;
       })
     );
   } else {
     return startBuild(options, context).pipe(
-      concatMap(v => {
+      concatMap((v) => {
         if (!v.success) {
           context.logger.error('Build target failed!');
           return of({ success: false });
@@ -61,9 +61,9 @@ function runScully(
 ): Observable<BuilderRun> {
   const commands: { command: string }[] = [];
   const args = getExecArgv(options);
-  options.configFiles.forEach(fileName => {
+  options.configFiles.forEach((fileName) => {
     commands.push({
-      command: `scully --configFile=${fileName} ${args.join(' ')}`
+      command: `scully --configFile=${fileName} ${args.join(' ')}`,
     });
   });
   return from(
@@ -71,7 +71,7 @@ function runScully(
       commands: commands,
       cwd: options.root,
       color: true,
-      parallel: false
+      parallel: false,
     })
   );
 }
@@ -79,7 +79,7 @@ function runScully(
 function getExecArgv(options: ScullyBuilderOptions) {
   const args = [];
   const keys = Object.keys(options);
-  keys.forEach(key => {
+  keys.forEach((key) => {
     if (
       options[key] !== undefined &&
       key !== 'buildTarget' &&

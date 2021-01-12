@@ -3,11 +3,8 @@ import { NPM } from './npm';
 import { Yarn } from './yarn';
 
 describe('Packagers', () => {
-
   describe('packager', () => {
-
     beforeEach(() => {
-
       packager['registeredPackagers'] = {
         npm: NPM,
         yarn: Yarn,
@@ -15,7 +12,7 @@ describe('Packagers', () => {
     });
 
     it('npm found', () => {
-        expect(packager('npm')).toBe(NPM);
+      expect(packager('npm')).toBe(NPM);
     });
 
     it('yarn found', () => {

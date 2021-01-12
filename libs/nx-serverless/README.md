@@ -7,15 +7,15 @@
 
 <div align="left">
 
-[![License](https://img.shields.io/npm/l/@flowaccount/nx-serverless.svg?style=flat-square)]()
+[![License](https://img.shields.io/npm/l/@nhammond101/nx-serverless.svg?style=flat-square)]()
 
 </div>
 
 <div align="left">
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](https://www.serverless.com)
-[![@flowaccount/nx-serverless](https://img.shields.io/badge/%40nhammond101-nx--serverless-blue)](https://github.com/flowaccount/nx-plugins/tree/master/libs/nx-serverless)
-[![NPM Version](https://badge.fury.io/js/%40nhammond101%2Fnx-serverless.svg)](https://www.npmjs.com/@flowaccount/nx-serverless)
+[![@nhammond101/nx-serverless](https://img.shields.io/badge/%40nhammond101-nx--serverless-blue)](https://github.com/flowaccount/nx-plugins/tree/master/libs/nx-serverless)
+[![NPM Version](https://badge.fury.io/js/%40nhammond101%2Fnx-serverless.svg)](https://www.npmjs.com/@nhammond101/nx-serverless)
 [![Typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://www.typescriptlang.org/)
 
 </div>
@@ -26,7 +26,7 @@
 
 🔎 **Extensible Dev Tools for Monorepos.**
 
-# What is @flowaccount/nx-serverless
+# What is @nhammond101/nx-serverless
 
 🔎 **Extensible Continous Delivery/Depolyment Tools on top of Nx workspace for Serverless Framework. Because on multiple lambda in one repository is an awesome thing!**
 
@@ -83,21 +83,21 @@ First you need to create an nx workspace to get started!
 
 ```bash
 npx create-nx-workspace # Then you got to use yarn/npm
-nx add @flowaccount/nx-serverless # or with these options --project=my-app --provider=aws --addUniversal=yes
+nx add @nhammond101/nx-serverless # or with these options --project=my-app --provider=aws --addUniversal=yes
 ```
 
 **Using npm**
 
 ```bash
 npm init nx-workspace
-nx add @flowaccount/nx-serverless # or with these options --project=my-app --provider=aws --addUniversal=yes
+nx add @nhammond101/nx-serverless # or with these options --project=my-app --provider=aws --addUniversal=yes
 ```
 
 **Using yarn**
 
 ```bash
 yarn create nx-workspace
-nx add @flowaccount/nx-serverless # or with these options --project=my-app --provider=aws --addUniversal=yes
+nx add @nhammond101/nx-serverless # or with these options --project=my-app --provider=aws --addUniversal=yes
 ```
 
 **Deploying/Compiling application (Assuming you have nx added globally, otherwise use npx/npm/yarn!)**
@@ -121,21 +121,21 @@ nx run my-app:sls # to run the custom sls commands as per what you need!
 
 ```bash
 npx create-nx-workspace # Then you got to use yarn/npm
-nx g @flowaccount/nx-serverless:api-serverless --name=myapi --provider=aws
+nx g @nhammond101/nx-serverless:api-serverless --name=myapi --provider=aws
 ```
 
 **Using npm**
 
 ```bash
 npm init nx-workspace
-nx g @flowaccount/nx-serverless:api-serverless --name=myapi --provider=aws
+nx g @nhammond101/nx-serverless:api-serverless --name=myapi --provider=aws
 ```
 
 **Using yarn**
 
 ```bash
 yarn create nx-workspace
-nx g @flowaccount/nx-serverless:api-serverless --name=myapi--provider=aws
+nx g @nhammond101/nx-serverless:api-serverless --name=myapi--provider=aws
 ```
 
 **Deploying/Compiling application (Assuming you have nx added globally, otherwise use npx/npm/yarn!)**
@@ -172,7 +172,7 @@ The existing angular project in workspace.json/angular.json will be updated with
 
 ```json
 "compile": {
-  "builder": "@flowaccount/nx-serverless:compile",
+  "builder": "@nhammond101/nx-serverless:compile",
   "configurations": {
    ...
   },
@@ -181,19 +181,19 @@ The existing angular project in workspace.json/angular.json will be updated with
   }
 },
 "deploy": {
-  "builder": "@flowaccount/nx-serverless:deploy",
+  "builder": "@nhammond101/nx-serverless:deploy",
   "options": {
     ...
   }
 },
 "destroy": {
-  "builder": "@flowaccount/nx-serverless:destroy",
+  "builder": "@nhammond101/nx-serverless:destroy",
   "options": {
   ...
   }
 },
 "offline": {
-  "builder": "@flowaccount/nx-serverless:offline",
+  "builder": "@nhammond101/nx-serverless:offline",
   "configurations": {
    ...
   },
@@ -203,7 +203,7 @@ The existing angular project in workspace.json/angular.json will be updated with
  }
 }
 "sls": {
-        "builder": "@flowaccount/nx-serverless:sls",
+        "builder": "@nhammond101/nx-serverless:sls",
         "options": {
           "waitUntilTargets": [],
           "buildTarget": "my-app:build:production",
@@ -254,7 +254,7 @@ you workspace.json will be added with these
 
 ```json
 "build": {
-  "builder": "@flowaccount/nx-serverless:build",
+  "builder": "@nhammond101/nx-serverless:build",
   "configurations": {
    ...
   },
@@ -263,7 +263,7 @@ you workspace.json will be added with these
   }
 },
 "deploy": {
-  "builder": "@flowaccount/nx-serverless:deploy",
+  "builder": "@nhammond101/nx-serverless:deploy",
   "options": {
     "waitUntilTargets": ["myapi:some-other-builder"],
     "buildTarget": "myapi:build:production",
@@ -285,13 +285,13 @@ you workspace.json will be added with these
   }
 },
 "destroy": {
-  "builder": "@flowaccount/nx-serverless:destroy",
+  "builder": "@nhammond101/nx-serverless:destroy",
   "options": {
    ...
   }
 },
 "sls": {
-  "builder": "@flowaccount/nx-serverless:sls",
+  "builder": "@nhammond101/nx-serverless:sls",
   "options": {
     ...
   }
@@ -304,7 +304,7 @@ you workspace.json will be added with these
   }
 },
 "serve": {
-  "builder": "@flowaccount/nx-serverless:offline",
+  "builder": "@nhammond101/nx-serverless:offline",
   "configurations": {
     ...
   },

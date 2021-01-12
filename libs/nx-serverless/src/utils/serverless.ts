@@ -2,7 +2,7 @@ import * as Serverless from 'serverless/lib/Serverless';
 import { ServerlessBaseOptions } from './types';
 import {
   targetFromTargetString,
-  BuilderContext
+  BuilderContext,
 } from '@angular-devkit/architect';
 import { from } from 'rxjs/internal/observable/from';
 import { mergeMap, concatMap } from 'rxjs/operators';
@@ -42,7 +42,7 @@ export class ServerlessWrapper {
             return from(
               Promise.all([
                 context.getTargetOptions(target),
-                context.getBuilderNameForTarget(target)
+                context.getBuilderNameForTarget(target),
               ]).then(([options, builderName]) => {
                 context.validateOptions(options, builderName);
                 return options;
@@ -63,7 +63,7 @@ export class ServerlessWrapper {
                 path: path.join(
                   options.servicePath,
                   options.processEnvironmentFile
-                )
+                ),
               });
               context.logger.info(
                 `Environment variables set according to ${options.processEnvironmentFile}`
@@ -78,13 +78,13 @@ export class ServerlessWrapper {
           }
           this.serverless$ = new Serverless({
             config: options.serverlessConfig,
-            servicePath: options.servicePath
+            servicePath: options.servicePath,
           });
           return this.serverless$.init();
         }),
         concatMap(() => {
           return this.serverless$.service.load({
-            config: options.serverlessConfig
+            config: options.serverlessConfig,
           });
         }),
         concatMap(() => {

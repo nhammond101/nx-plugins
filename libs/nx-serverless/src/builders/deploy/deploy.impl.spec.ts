@@ -32,7 +32,7 @@ describe('Serverless Deploy Builder', () => {
       stage: 'dev',
       updateConfig: false,
       args: [],
-      list: false
+      list: false,
     };
     jest.spyOn(deploy, 'getExecArgv').mockReturnValue([]);
     jest
@@ -51,20 +51,20 @@ describe('Serverless Deploy Builder', () => {
       cli: {
         log: () => {
           return;
-        }
+        },
       },
       processedInput: {},
       config: {
-        servicePath: '/root/apps/serverlessapp/src'
+        servicePath: '/root/apps/serverlessapp/src',
       },
       service: {
         getAllFunctions: () => {
           return [];
-        }
+        },
       },
       run: () => {
         return Promise.resolve({ success: true });
-      }
+      },
     });
   });
   describe('run', () => {

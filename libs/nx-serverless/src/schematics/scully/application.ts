@@ -9,7 +9,7 @@ import {
   Tree,
   url,
   externalSchematic,
-  noop
+  noop,
 } from '@angular-devkit/schematics';
 import { join, normalize } from '@angular-devkit/core';
 import { Schema } from './schema';
@@ -18,68 +18,68 @@ import { offsetFromRoot } from '@nrwl/workspace';
 import init from '../init/init';
 import { getBuildConfig } from '../utils';
 
-interface NormalizedSchema extends Schema {}
+type NormalizedSchema = Schema
 
 function getServeConfig(options: NormalizedSchema) {
   return {
-    builder: '@flowaccount/nx-serverless:offline',
+    builder: '@nhammond101/nx-serverless:offline',
     options: {
       waitUntilTargets: [options.project + ':scully'],
       buildTarget: options.project + ':compile',
       config: join(options.appProjectRoot, 'serverless.yml'),
-      location: join(normalize('dist'), options.appProjectRoot)
+      location: join(normalize('dist'), options.appProjectRoot),
     },
     configurations: {
       dev: {
-        buildTarget: options.project + ':compile:dev'
+        buildTarget: options.project + ':compile:dev',
       },
       production: {
-        buildTarget: options.project + ':compile:production'
-      }
-    }
+        buildTarget: options.project + ':compile:production',
+      },
+    },
   };
 }
 
 function getScullyBuilderConfig(options: NormalizedSchema) {
   return {
-    builder: '@flowaccount/nx-serverless:scully',
+    builder: '@nhammond101/nx-serverless:scully',
     options: {
       buildTarget: options.project + ':build:production',
       configFiles: [join(options.appProjectRoot, 'scully.config.js')],
       scanRoutes: true,
       removeStaticDist: true,
-      skipBuild: false
-    }
+      skipBuild: false,
+    },
   };
 }
 
 function getDeployConfig(options: NormalizedSchema) {
   return {
-    builder: '@flowaccount/nx-serverless:deploy',
+    builder: '@nhammond101/nx-serverless:deploy',
     options: {
       waitUntilTargets: [options.project + ':scully'],
       buildTarget: options.project + ':compile:production',
       config: join(options.appProjectRoot, 'serverless.yml'),
       location: join(normalize('dist'), options.appProjectRoot),
-      package: join(normalize('dist'), options.appProjectRoot)
-    }
+      package: join(normalize('dist'), options.appProjectRoot),
+    },
   };
 }
 
 function getDestroyConfig(options: NormalizedSchema) {
   return {
-    builder: '@flowaccount/nx-serverless:destroy',
+    builder: '@nhammond101/nx-serverless:destroy',
     options: {
       buildTarget: options.project + ':compile:production',
       config: join(options.appProjectRoot, 'serverless.yml'),
       location: join(normalize('dist'), options.appProjectRoot),
-      package: join(normalize('dist'), options.appProjectRoot)
-    }
+      package: join(normalize('dist'), options.appProjectRoot),
+    },
   };
 }
 
 function updateWorkspaceJson(options: NormalizedSchema): Rule {
-  return updateWorkspaceInTree(workspaceJson => {
+  return updateWorkspaceInTree((workspaceJson) => {
     const project = workspaceJson.projects[options.project];
     const buildConfig = getBuildConfig(options);
     buildConfig.options['skipClean'] = true;
@@ -88,7 +88,7 @@ function updateWorkspaceJson(options: NormalizedSchema): Rule {
       options.appProjectRoot,
       'tsconfig.serverless.json'
     );
-    buildConfig.builder = '@flowaccount/nx-serverless:compile';
+    buildConfig.builder = '@nhammond101/nx-serverless:compile';
     project.architect.compile = buildConfig;
     project.architect.scully = getScullyBuilderConfig(options);
     project.architect.offline = getServeConfig(options);
@@ -106,9 +106,9 @@ function addAppFiles(options: NormalizedSchema): Rule {
         tmpl: '',
         name: options.project,
         root: options.appProjectRoot,
-        offset: offsetFromRoot(options.appProjectRoot)
+        offset: offsetFromRoot(options.appProjectRoot),
       }),
-      move(options.appProjectRoot)
+      move(options.appProjectRoot),
     ])
   );
 }
@@ -154,18 +154,18 @@ functions:
 function normalizeOptions(project: any, options: Schema): NormalizedSchema {
   return {
     ...options,
-    appProjectRoot: project.root
+    appProjectRoot: project.root,
   };
 }
 
-export default function(schema: Schema): Rule {
+export default function (schema: Schema): Rule {
   return (host: Tree, context: SchematicContext) => {
     const project = getProjectConfig(host, schema.project);
     const options = normalizeOptions(project, schema);
     return chain([
       init({
         skipFormat: options.skipFormat,
-        expressProxy: true
+        expressProxy: true,
       }),
       // options.addScully
       //   ? externalSchematic('@scullyio/scully', 'run', {
@@ -174,7 +174,7 @@ export default function(schema: Schema): Rule {
       //   : noop(),
       addAppFiles(options),
       addServerlessYMLFile(options),
-      updateWorkspaceJson(options)
+      updateWorkspaceJson(options),
     ])(host, context);
   };
 }

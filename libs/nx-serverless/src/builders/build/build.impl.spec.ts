@@ -31,17 +31,17 @@ describe('Serverless Build Builder', () => {
       fileReplacements: [
         {
           replace: 'apps/environment/environment.ts',
-          with: 'apps/environment/environment.prod.ts'
-        }
+          with: 'apps/environment/environment.prod.ts',
+        },
       ],
       assets: [],
-      statsJson: false
+      statsJson: false,
     };
     runWebpack = jest.fn().mockImplementation((config, context, options) => {
       options.logging({
         toJson: () => ({
-          stats: 'stats'
-        })
+          stats: 'stats',
+        }),
       });
       return of({ success: true });
     });
@@ -50,10 +50,10 @@ describe('Serverless Build Builder', () => {
       workspace: {
         projects: {
           get: () => ({
-            sourceRoot: '/root/apps/serverlessapp/src'
-          })
-        }
-      }
+            sourceRoot: '/root/apps/serverlessapp/src',
+          }),
+        },
+      },
     });
     spyOn(ServerlessWrapper, 'init').and.returnValue(of(null));
     jest
@@ -65,13 +65,13 @@ describe('Serverless Build Builder', () => {
       cli: {
         log: () => {
           return;
-        }
+        },
       },
       service: {
         getAllFunctions: () => {
           return [];
-        }
-      }
+        },
+      },
     });
     jest
       .spyOn(normalizeModule, 'getEntryForFunction')
@@ -84,7 +84,7 @@ describe('Serverless Build Builder', () => {
   describe('run', () => {
     it('should call runWebpack', async () => {
       const run = await architect.scheduleBuilder(
-        '@flowaccount/nx-serverless:build',
+        '@nhammond101/nx-serverless:build',
         testOptions
       );
       await run.output.toPromise();
@@ -94,7 +94,7 @@ describe('Serverless Build Builder', () => {
 
     it('should emit the outfile along with success', async () => {
       const run = await architect.scheduleBuilder(
-        '@flowaccount/nx-serverless:build',
+        '@nhammond101/nx-serverless:build',
         testOptions
       );
       const output = await run.output.toPromise();
@@ -105,19 +105,19 @@ describe('Serverless Build Builder', () => {
 
     describe('webpackConfig option', () => {
       it('should require the specified function and use the return value', async () => {
-        const mockFunction = jest.fn(config => ({
-          config: 'config'
+        const mockFunction = jest.fn((config) => ({
+          config: 'config',
         }));
         jest.mock(
           join(normalize('/root'), 'apps/serverlessapp/webpack.config.js'),
           () => mockFunction,
           {
-            virtual: true
+            virtual: true,
           }
         );
         testOptions.webpackConfig = 'apps/serverlessapp/webpack.config.js';
         const run = await architect.scheduleBuilder(
-          '@flowaccount/nx-serverless:build',
+          '@nhammond101/nx-serverless:build',
           testOptions
         );
         await run.output.toPromise();
@@ -126,7 +126,7 @@ describe('Serverless Build Builder', () => {
         expect(mockFunction).toHaveBeenCalled();
         expect(runWebpack).toHaveBeenCalledWith(
           {
-            config: 'config'
+            config: 'config',
           },
           jasmine.anything(),
           jasmine.anything()

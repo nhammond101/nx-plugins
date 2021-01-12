@@ -121,7 +121,7 @@ Including the issue number that the PR relates to also helps with tracking.
 ```
 feat(nx-severless): add an option to make lambda deploy works for angular-scully
 
-`nx generate @flowaccount/nx-serverless mynest` bootstraps the mynest application in workspace
+`nx generate @nhammond101/nx-serverless mynest` bootstraps the mynest application in workspace
 
 Closes #999
 ```
