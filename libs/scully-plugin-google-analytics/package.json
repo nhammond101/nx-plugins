@@ -5,7 +5,7 @@
     "@scullyio/scully": "^0.0.91"
   },
   "dependencies": {
-    "jsdom": "^16.2.1"
+    "jsdom": "16.4.0"
   },
   "maintainers": [
     "Wickstargazer <wickyorama@gmail.com> (https://wickstargazer.com)"
