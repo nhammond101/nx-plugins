@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-webpack": "0.1001.7",
-    "@babel/code-frame": "7.10.1",
+    "@babel/code-frame": "7.12.11",
     "@nrwl/eslint-plugin-nx": "11.1.2",
     "@nrwl/jest": "11.1.2",
     "@nrwl/nx-plugin": "11.1.2",
