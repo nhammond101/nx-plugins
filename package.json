@@ -86,7 +86,7 @@
     "upath": "1.2.0",
     "webpack": "4.41.2",
     "webpack-dev-server": "3.11.2",
-    "webpack-merge": "4.2.1",
+    "webpack-merge": "4.2.2",
     "webpack-node-externals": "1.7.2"
   },
   "config": {
