@@ -20,12 +20,12 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "@nrwl/workspace": "10.4.4"
+    "@nrwl/workspace": "10.4.10"
   },
   "dependencies": {
     "@nguniversal/express-engine": "^9.0.1",
-    "@nrwl/express": "10.4.4",
-    "@nrwl/node": "10.4.4",
+    "@nrwl/express": "10.4.10",
+    "@nrwl/node": "10.4.10",
     "circular-dependency-plugin": "^5.0.2",
     "copy-webpack-plugin": "5.1.1",
     "depcheck": "0.9.2",
