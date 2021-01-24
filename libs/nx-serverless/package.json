@@ -23,7 +23,7 @@
     "@nrwl/workspace": "10.4.10"
   },
   "dependencies": {
-    "@nguniversal/express-engine": "^9.0.1",
+    "@nguniversal/express-engine": "^11.0.0",
     "@nrwl/express": "10.4.10",
     "@nrwl/node": "10.4.10",
     "circular-dependency-plugin": "^5.0.2",
