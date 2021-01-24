@@ -41,7 +41,7 @@
     "express": "4.17.1"
   },
   "peerDependencies": {
-    "@nrwl/express": "^10.4.4"
+    "@nrwl/express": "^10.4.4 || ^11.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-webpack": "0.1101.1",
