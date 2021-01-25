@@ -57,7 +57,7 @@
     "@types/node": "12.19.15",
     "@typescript-eslint/eslint-plugin": "4.14.1",
     "@typescript-eslint/parser": "4.14.1",
-    "circular-dependency-plugin": "5.2.0",
+    "circular-dependency-plugin": "5.2.2",
     "copy-webpack-plugin": "7.0.0",
     "cypress": "4.12.1",
     "cz-conventional-changelog": "3.2.0",
