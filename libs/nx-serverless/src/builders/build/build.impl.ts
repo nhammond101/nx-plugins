@@ -45,6 +45,7 @@ function run(
       options.tsConfig = consolidateExcludes(options, context);
       options.entry = options.files;
       console.log(options.tsConfig);
+      ServerlessWrapper.serverless.cli.log(options.tsConfig);
       let config = getNodeWebpackConfig(options);
       if (options.webpackConfig) {
         config = require(options.webpackConfig)(config, {
