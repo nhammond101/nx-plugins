@@ -19,7 +19,7 @@
     "@nrwl/workspace": "9.8.0"
   },
   "dependencies": {
-    "ts-node": "~7.0.0",
+    "ts-node": "~9.1.0",
     "typescript": "4.1.3"
   },
   "devDependencies": {},
