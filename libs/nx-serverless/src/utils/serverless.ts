@@ -5,34 +5,42 @@ import {
   BuilderContext,
 } from '@angular-devkit/architect';
 import { from } from 'rxjs/internal/observable/from';
-import { mergeMap, concatMap } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import {
+  mergeMap,
+  concatMap,
+} from 'rxjs/operators';
+import {
+  of,
+  Observable,
+} from 'rxjs';
 import * as path from 'path';
 import * as fs from 'fs';
 import { ServerlessDeployBuilderOptions } from '../builders/deploy/deploy.impl';
+
 export class ServerlessWrapper {
-  constructor() {}
+  constructor() {
+  }
 
   private static serverless$: any = null;
 
   static get serverless() {
     if (this.serverless$ === null) {
       throw new Error(
-        'Please initialize serverless before usage, or pass option for initialization.'
+        'Please initialize serverless before usage, or pass option for initialization.',
       );
     }
     return this.serverless$;
   }
 
   static isServerlessDeployBuilderOptions(
-    arg: any
+    arg: any,
   ): arg is ServerlessDeployBuilderOptions {
     return arg.buildTarget !== undefined;
   }
 
   static init<T extends ServerlessBaseOptions>(
     options: T,
-    context: BuilderContext
+    context: BuilderContext,
   ): Observable<void> {
     if (this.serverless$ === null) {
       return from(Promise.resolve(options)).pipe(
@@ -46,9 +54,10 @@ export class ServerlessWrapper {
               ]).then(([options, builderName]) => {
                 context.validateOptions(options, builderName);
                 return options;
-              })
+              }),
             );
-          } else {
+          }
+          else {
             return of(options);
           }
         }),
@@ -56,21 +65,22 @@ export class ServerlessWrapper {
           try {
             if (
               fs.existsSync(
-                path.join(options.servicePath, options.processEnvironmentFile)
+                path.join(options.servicePath, options.processEnvironmentFile),
               )
             ) {
               require('dotenv-json')({
                 path: path.join(
                   options.servicePath,
-                  options.processEnvironmentFile
+                  options.processEnvironmentFile,
                 ),
               });
               context.logger.info(
-                `Environment variables set according to ${options.processEnvironmentFile}`
+                `Environment variables set according to ${options.processEnvironmentFile}`,
               );
-            } else {
+            }
+            else {
               context.logger.error(
-                'No env.json found! no environment will be set!'
+                'No env.json found! no environment will be set!',
               );
             }
           } catch (e) {
@@ -78,6 +88,8 @@ export class ServerlessWrapper {
           }
           this.serverless$ = new Serverless({
             config: options.serverlessConfig,
+            // serverless v2 fix
+            configurationPath: options.serverlessConfig,
             servicePath: options.servicePath,
           });
           return this.serverless$.init();
@@ -85,14 +97,17 @@ export class ServerlessWrapper {
         concatMap(() => {
           return this.serverless$.service.load({
             config: options.serverlessConfig,
+            // serverless v2 fix
+            configurationPath: options.serverlessConfig,
           });
         }),
         concatMap(() => {
           this.serverless$.cli.asciiGreeting();
           return of(null);
-        })
+        }),
       );
-    } else {
+    }
+    else {
       return of(null);
     }
   }

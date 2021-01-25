@@ -4,7 +4,9 @@ import { Configuration, ProgressPlugin, Stats } from 'webpack';
 import * as ts from 'typescript';
 
 import { LicenseWebpackPlugin } from 'license-webpack-plugin';
+// @ts-ignore
 import CircularDependencyPlugin = require('circular-dependency-plugin');
+// @ts-ignore
 import ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 import TsConfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -123,7 +125,7 @@ export function getBaseWebpackPartial(
         },
         perChunkOutput: false,
         outputFilename: '3rdpartylicenses.txt',
-      })
+      }) as any // https://github.com/xz64/license-webpack-plugin/issues/61
     );
   }
 
