@@ -46,7 +46,7 @@
     "webpack-node-externals": "1.7.2"
   },
   "devDependencies": {
-    "rxjs": "^6.6.3"
+    "rxjs": "6.6.3"
   },
   "repository": {
     "type": "git",

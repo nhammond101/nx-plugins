@@ -79,7 +79,7 @@
     "prettier": "2.2.1",
     "rxjs": "6.6.3",
     "semantic-release": "17.3.7",
-    "serverless": "^2.20.1",
+    "serverless": "2.20.1",
     "serverless-webpack": "5.3.5",
     "strip-json-comments": "3.1.1",
     "tree-kill": "1.2.2",
