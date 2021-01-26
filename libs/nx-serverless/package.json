@@ -30,7 +30,7 @@
     "@nrwl/node": "11.1.5",
     "@types/serverless": "^1.78.20",
     "circular-dependency-plugin": "5.0.2",
-    "copy-webpack-plugin": "5.1.1",
+    "copy-webpack-plugin": "5.1.2",
     "depcheck": "0.9.2",
     "dotenv": "6.2.0",
     "dotenv-json": "1.0.0",
