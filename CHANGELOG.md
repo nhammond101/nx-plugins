@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/nhammond101/nx-plugins/compare/v2.0.1...v2.0.2) (2021-02-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @nguniversal/express-engine to v9.1.1 ([140c8af](https://github.com/nhammond101/nx-plugins/commit/140c8affa5ebdc9f5e47a5f8b11e7f754fec3f89))
+
 ## [2.0.1](https://github.com/nhammond101/nx-plugins/compare/v2.0.0...v2.0.1) (2021-02-13)
 
 
