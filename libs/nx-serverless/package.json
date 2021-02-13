@@ -23,8 +23,8 @@
     "@nrwl/workspace": "11.1.5"
   },
   "dependencies": {
-    "@angular-devkit/architect": "^0.1100.7",
-    "@angular-devkit/build-webpack": "^0.1100.7",
+    "@angular-devkit/architect": "^0.1102.0",
+    "@angular-devkit/build-webpack": "^0.1102.0",
     "@nguniversal/express-engine": "9.0.1",
     "@nrwl/express": "11.1.5",
     "@nrwl/node": "11.1.5",
