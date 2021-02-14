@@ -54,7 +54,7 @@
     "@types/express": "4.17.11",
     "@types/fs-extra": "9.0.6",
     "@types/jest": "26.0.20",
-    "@types/node": "12.19.15",
+    "@types/node": "12.20.1",
     "@typescript-eslint/eslint-plugin": "4.14.1",
     "@typescript-eslint/parser": "4.14.1",
     "circular-dependency-plugin": "5.2.2",
