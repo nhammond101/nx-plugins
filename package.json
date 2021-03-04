@@ -37,7 +37,7 @@
   },
   "private": true,
   "dependencies": {
-    "@nguniversal/express-engine": "9.1.1",
+    "@nguniversal/express-engine": "11.2.1",
     "express": "4.17.1"
   },
   "peerDependencies": {
